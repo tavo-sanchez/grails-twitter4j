@@ -1,0 +1,9 @@
+out
+target
+*.war
+stacktrace.log
+prodDb.*
+.idea
+*.iml
+*.ipr
+*.iws
