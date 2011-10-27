@@ -165,4 +165,9 @@ class Twitter4jtestController {
         redirect action:profiles
     }
 
+    def perfil = {
+        def screenName = twitter4jService.getScreenName()
+        render view:"/perfil", model:[screenName:screenName]
+    }
+
 }
