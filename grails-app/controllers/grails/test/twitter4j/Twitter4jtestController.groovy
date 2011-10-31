@@ -1,7 +1,14 @@
 package grails.test.twitter4j
 
 import twitter4j.Query
-
+import twitter4j.Twitter
+import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import twitter4j.http.RequestToken
+import twitter4j.TwitterFactory
+import twitter4j.http.AccessToken
+import twitter4j.TwitterException
+import javax.servlet.http.HttpServletResponse
+import org.twitter4j.grails.plugin.Twitter4jService
 
 class Twitter4jtestController {
 
@@ -136,38 +143,64 @@ class Twitter4jtestController {
         Query query = new Query(queryparams.toString());
         def timeline = twitter4jService.search(query).getTweets()
         flash.message = "Search result for '${query}'"
-       render view: "/timeline", model: [timeline: timeline, tipoTimeLine: tipoTimeLine]
+        render view: "/timeline", model: [timeline: timeline, tipoTimeLine: tipoTimeLine]
     }
 
     def follow = {
 
         def user = params.user
-        if(twitter4jService.createFriendship(user.toString())) {
+        if (twitter4jService.createFriendship(user.toString())) {
             flash.message = "Ahora sigues al usuario ${user}"
 
         } else {
             flash.message = "No se pudo seguir a ${user}"
 
         }
-        redirect action:profiles
+        redirect action: profiles
     }
 
-     def unfollow = {
+    def unfollow = {
 
         def user = params.user
-        if(twitter4jService.destroyFriendship(user.toString())) {
+        if (twitter4jService.destroyFriendship(user.toString())) {
             flash.message = "Ahora ya no sigues al usuario ${user}"
 
         } else {
             flash.message = "No se pudo dejar de seguir a ${user}"
 
         }
-        redirect action:profiles
+        redirect action: profiles
     }
 
     def perfil = {
         def screenName = twitter4jService.getScreenName()
-        render view:"/perfil", model:[screenName:screenName]
+        render view: "/perfil", model: [screenName: screenName]
+    }
+
+    def renderSendTweet = {
+        render view: "/sendTweet"
+    }
+
+    def sendTweet = {
+        println params
+        def eventoInstance = Evento.get(params.evento.id)
+        def twitterAccountInstance = TwitterAccount.findWhere(registro: eventoInstance.id, className: eventoInstance.class.name)
+        if (twitterAccountInstance) {
+            twitter4jService.conectar()
+            try {
+                twitter4jService.updateStatus("Testing 94")
+                flash.message = "Posted status:  on ${twitter4jService.screenName}"
+                twitter4jService.limpiarConexion()
+            } catch (TwitterException te) {
+                flash.error = te.message
+            }
+            render(view: 'status')
+
+        } else {
+            println "Este evento no tiene cuenta de twitter"
+        }
+
+
     }
 
 }

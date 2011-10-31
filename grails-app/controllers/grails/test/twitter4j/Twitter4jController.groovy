@@ -11,7 +11,7 @@ import org.twitter4j.grails.plugin.Twitter4jService
 
 class Twitter4jController {
 
-    Twitter4jService twitter4jService
+    def twitter4jService
     def beforeInterceptor = {
         if(ConfigurationHolder.config.twitter.disableTwitter4jController) {
             log.debug("Twitter4jController is disabled")
