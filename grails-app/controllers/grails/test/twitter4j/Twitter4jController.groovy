@@ -7,7 +7,6 @@ import twitter4j.TwitterFactory
 import twitter4j.http.AccessToken
 import twitter4j.TwitterException
 import javax.servlet.http.HttpServletResponse
-import org.twitter4j.grails.plugin.Twitter4jService
 
 class Twitter4jController {
 
