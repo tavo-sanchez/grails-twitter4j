@@ -1,9 +1,11 @@
 
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.FactoryBean;
-import twitter4j.*;
+import org.springframework.beans.factory.FactoryBean
+import twitter4j.TwitterStream
+import twitter4j.TwitterStreamFactory;
 import twitter4j.conf.ConfigurationBuilder;
+
 
 class TwitterUserStreamFactoryBean implements FactoryBean{
 	Logger log = Logger.getLogger(getClass())
@@ -16,8 +18,8 @@ class TwitterUserStreamFactoryBean implements FactoryBean{
 		configuration.each { key, value ->
 			cb."$key" = value
 		}
-		
-		TwitterStream twitterStream = new TwitterStreamFactory(cb.build()).getInstance();
+
+        TwitterStream twitterStream = new TwitterStreamFactory(cb.build()).getInstance();
 		
 		log.debug "finish building tweet listener..."
 		

@@ -94,9 +94,33 @@ twitter {
     disableTwitter4jController = false  // To avoid intruders to use controller alltogether.
     'default' {
         debugEnabled = false
-        OAuthConsumerKey = 'C8jUVEdFANkjj0P9VgLA'
-        OAuthConsumerSecret = 'SDAP8yBKp6s8QS4yi7a5tjV2RNwsfeZaDX1mishUrY'
-        OAuthAccessToken = '73244856-lYDyVDVMT1RiFwi4GTjFSzWCCO6wjMVjCXBdPOYdX'
-        OAuthAccessTokenSecret = '4EzvaV5KzK84N3C5gIk37Q77kZUNevLP49uJaUWhNck'
+        OAuthConsumerKey = 'HDTvu02YRoiSkSFnhBOzGsPtc'
+        OAuthConsumerSecret = 'WsARUHmX7Xz3mLaLo1RtVK1ww6yPORr3mW8kkksu4PvcaLT1Yv'
+        OAuthAccessToken = '89095154-Jbp25n9H8z6evpZ94VKm7xkwUXz7kKx3bxJ686PAB'
+        OAuthAccessTokenSecret = '2JPJlkIiH7M9hYjQPBTaeOe2CpQNCr4CClnRa4ros4jG3'
     }
 }
+
+// Uncomment and edit the following lines to start using Grails encoding & escaping improvements
+
+/* remove this line 
+// GSP settings
+grails {
+    views {
+        gsp {
+            encoding = 'UTF-8'
+            htmlcodec = 'xml' // use xml escaping instead of HTML4 escaping
+            codecs {
+                expression = 'html' // escapes values inside null
+                scriptlet = 'none' // escapes output from scriptlets in GSPs
+                taglib = 'none' // escapes output from taglibs
+                staticparts = 'none' // escapes output from static template parts
+            }
+        }
+        // escapes all not-encoded output at final stage of outputting
+        filteringCodecForContentType {
+            //'text/html' = 'html'
+        }
+    }
+}
+remove this line */

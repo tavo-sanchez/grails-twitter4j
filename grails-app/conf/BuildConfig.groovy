@@ -17,7 +17,7 @@ grails.project.dependency.resolution = {
         // uncomment the below to enable remote dependency resolution
         // from public Maven repositories
         //mavenLocal()
-        //mavenCentral()
+        mavenCentral()
         //mavenRepo "http://snapshots.repository.codehaus.org"
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -26,9 +26,17 @@ grails.project.dependency.resolution = {
 
     }
     dependencies {
-        runtime group:"org.twitter4j", name:"twitter4j-core", version:"2.1.11"
+        runtime 'org.twitter4j:twitter4j-core:4.0.2'
+        runtime 'org.twitter4j:twitter4j-stream:4.0.2'
+        runtime 'org.twitter4j:twitter4j-async:4.0.2'
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
         // runtime 'mysql:mysql-connector-java:5.1.13'
     }
+
+    plugins{
+        build ':tomcat:7.0.52.1'
+        runtime ":hibernate:3.6.10.13"
+    }
+
 }
